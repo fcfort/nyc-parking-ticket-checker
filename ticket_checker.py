@@ -28,10 +28,10 @@ br.find_control(name='args.VIOLATION_NUMBER_NOL', nr=0).value = args.violation
 # Remove duplicate form controls, otherwise we get an error from the server.
 form_names_set = set([])
 for control in br.form.controls[:]:
-    if control.name in form_names_set:
-        br.form.controls.remove(control)
-    else:
-        form_names_set.add(control.name)
+  if control.name in form_names_set:
+    br.form.controls.remove(control)
+  else:
+    form_names_set.add(control.name)
 
 # Submit form
 br.submit()
