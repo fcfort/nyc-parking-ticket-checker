@@ -1,6 +1,6 @@
 # NYC Parking Ticket Checker
 
-I was interested in writing something to be able to see what tickets I have outstanding programmtically and saw that [drassi/nyc-parking-ticket-monitor](https://github.com/drassi/nyc-parking-ticket-monitor) existed. Unfortunately the end-point that library used (`http://nycserv.nyc.gov/NYCServWeb/NYCSERVMain`) is now is behind a reCAPTCHA challenge making it infeasible to use.
+I was interested in writing something to be able to see what tickets I have outstanding programmatically and saw that [drassi/nyc-parking-ticket-monitor](https://github.com/drassi/nyc-parking-ticket-monitor) existed. Unfortunately the end-point used there (`http://nycserv.nyc.gov/NYCServWeb/NYCSERVMain`) is now behind a reCAPTCHA challenge making it infeasible to use.
 
 Instead I used the payments end-point (`http://www1.nyc.gov/assets/finance/jump/pay_parking_camera_violations.html`) to perform a similar query.
 
