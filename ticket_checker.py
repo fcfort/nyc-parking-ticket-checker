@@ -44,11 +44,11 @@ soup = BeautifulSoup(br.response().read(), BEAUTIFUL_SOUP_PARSER)
 error_tags = soup.find_all(class_='global-violation-prompt')
 
 if error_tags:
-	for tag in error_tags:
-		print tag.string
+  for tag in error_tags:
+    print tag.string
 else:
-	match = re.search(r'No matches found for your violation search', html)
-	if match:
-	    print "No tickets found for violation # " + args.violation
-	else:
-	    print "Found a ticket for violation # " + args.violation
+  match = re.search(r'No matches found for your violation search', html)
+  if match:
+      print "No tickets found for violation # " + args.violation
+  else:
+      print "Found a ticket for violation # " + args.violation
