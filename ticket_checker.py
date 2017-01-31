@@ -1,36 +1,22 @@
 import argparse
 import mechanize
-import logging
 import re
-import sys
 from bs4 import BeautifulSoup
 
 BEAUTIFUL_SOUP_PARSER = "html.parser"
 
-logger = logging.getLogger("mechanize")
-logger.addHandler(logging.StreamHandler(sys.stdout))
-logger.setLevel(logging.INFO)
-
 parser = argparse.ArgumentParser()
 parser.add_argument('--violation', help='Violation #')
-# parser.add_argument('--plate', help='License Plate #')
-# Plate type PAS
 args = parser.parse_args()
 
 br = mechanize.Browser()
-
-# Log debug information about HTTP redirects and Refreshes.
-# br.set_debug_http(True)
-# br.set_debug_responses(True)
-# br.set_debug_redirects(True)
 
 # Get first URL
 br.open("http://www1.nyc.gov/assets/finance/jump/pay_parking_camera_violations.html")
 
 # Follow redirect contained in iframe src
 soup = BeautifulSoup(br.response().read(), BEAUTIFUL_SOUP_PARSER)
-iframe_src = soup.body.iframe['src']
-br.open(iframe_src)
+br.open(soup.body.iframe['src'])
 
 # Set violation #
 br.select_form(nr=0) # Form has no `name`
@@ -51,9 +37,8 @@ for control in br.form.controls[:]:
 br.submit()
 
 # Look for violation response text
-html = br.response().read()
-# print html
-soup = BeautifulSoup(html, BEAUTIFUL_SOUP_PARSER)
+
+soup = BeautifulSoup(br.response().read(), BEAUTIFUL_SOUP_PARSER)
 
 # Errors are put into a class `global-violation-prompt` div tag.
 error_tags = soup.find_all(class_='global-violation-prompt')
@@ -67,7 +52,3 @@ else:
 	    print "No tickets found for violation # " + args.violation
 	else:
 	    print "Found a ticket for violation # " + args.violation
-
-
-
-
