@@ -46,7 +46,6 @@ Check for your NY commerical plate:
 
 ## Future Plans
 
- - Add support for plate numbers.
  - Add support for multiple violations and plates.
  - Programmatic output (like JSON or CSV)
 
