@@ -3,7 +3,7 @@ import mechanize
 import re
 from bs4 import BeautifulSoup
 
-BEAUTIFUL_SOUP_PARSER = "html.parser"
+BEAUTIFUL_SOUP_PARSER = 'html.parser'
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--violation', help='Violation #')
@@ -12,7 +12,7 @@ args = parser.parse_args()
 br = mechanize.Browser()
 
 # Get first URL
-br.open("http://www1.nyc.gov/assets/finance/jump/pay_parking_camera_violations.html")
+br.open('http://www1.nyc.gov/assets/finance/jump/pay_parking_camera_violations.html')
 
 # Follow redirect contained in iframe src
 soup = BeautifulSoup(br.response().read(), BEAUTIFUL_SOUP_PARSER)
@@ -49,6 +49,6 @@ if error_tags:
 else:
   match = re.search(r'No matches found for your violation search', html)
   if match:
-      print "No tickets found for violation # " + args.violation
+      print 'No tickets found for violation # ' + args.violation
   else:
-      print "Found a ticket for violation # " + args.violation
+      print 'Found a ticket for violation # ' + args.violation
