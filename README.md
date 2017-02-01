@@ -8,11 +8,41 @@ Instead I used the payments end-point (`http://www1.nyc.gov/assets/finance/jump/
 
 Requires `BeautifulSoup4` to be installed.
 
-## Running
+## Usage
+
+```
+usage: ticket_checker.py [-h] [--violation VIOLATION] [--plate PLATE]
+                         [--state STATE] [--plate_type PLATE_TYPE] [--debug]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --violation VIOLATION
+                        Violation #
+  --plate PLATE         License Plate #
+  --state STATE         2-letter State of the license plate, defaults to "NY"
+  --plate_type PLATE_TYPE
+                        3-character type of the license plate, defaults to
+                        "PAS" (passenger)
+  --debug               Turns on debugging of HTTP calls.
+```
+
+## Examples
+
+Check for a specfic violation number:
 
 `python ticket_checker.py --violation VIOLATION_NUMBER`
 
-Where VIOLATION_NUMBER is the ten-digit violation number found on your ticket.
+Check for your NY plate:
+
+`python ticket_checker.py --plate COOLPL8`
+
+Check for your Montana plate:
+
+`python ticket_checker.py --plate COOLPL8 --state MT`
+
+Check for your NY commerical plate:
+
+`python ticket_checker.py --plate T0000000 --type COM`
 
 ## Future Plans
 
