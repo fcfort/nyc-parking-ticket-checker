@@ -109,5 +109,14 @@ else:
       print 'No tickets found for ' + query_string
   else:
     # Parse list of violations found:
-      print 'Found tickets for ' + query_string
-      print 'Got tickets: ' + '\n'.join([str(violation) for violation in get_violations(soup)])
+      violations = get_violations(soup)
+      print ('Found {} ticket(s) for ' + query_string).format(len(violations))
+      print 'Got tickets:'
+      for i, violation in enumerate(violations):
+        print '\t{}. {}: violation # {} for plate {} on {} for ${}'.format(
+            i + 1,
+            violation['description'], 
+            violation['number'],
+            violation['plate'],
+            violation['issue_date'],
+            violation['amount'])
