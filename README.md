@@ -44,6 +44,24 @@ Check for your NY commerical plate:
 
 `python ticket_checker.py --plate T0000000 --type COM`
 
+## Example output
+
+If a ticket is found the output will look like:
+
+```
+$ python ticket_checker.py --plate COOLPL8
+Found 1 ticket(s) for COOLPL8
+Got tickets:
+  1. NO PARKING-STREET CLEANING: violation # 1234567890 for plate COOLPL8 NY PAS on 01/23/2017 for $45.00
+```
+
+If there is an error, the script will print the error message returned from the server:
+
+```
+$ python ticket_checker.py --plate BADPLATE
+"The host system returned the following failure:The plate number was not found. Please verify the plate number, state and type values and search again. Please note if your ticket was recently issued or if you have no outstanding violations, your plate information will not be found. If you wish to pay a ticket you just received, search by the ticket number to ensure it has not been entered into the system. (Error code: PWS-00001) "
+```
+
 ## Future Plans
 
  - Add support for multiple violations and plates.
