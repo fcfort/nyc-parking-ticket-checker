@@ -5,6 +5,23 @@ import re
 import sys
 from bs4 import BeautifulSoup
 
+def get_violations(soup):
+  violation_list = []
+  violations = soup.find_all(
+      class_='violation-group-detail-wrapper expander-content')
+  for violation_tag in violations:
+    violation_values = violation_tag.find_all(
+      class_='violation-details-single-value1')
+    violation = {}
+    violation['number'] = violation_values[0].string
+    violation['plate'] = violation_values[1].string
+    violation['description'] = violation_values[2].string
+    violation['issue_date'] = violation_values[3].string
+    violation['amount'] = violation_values[4].string
+    # image_url_on_click = violation_tag.find(class_='nav-link').a['onclick']
+    violation_list.append(violation)
+  return violation_list
+
 BEAUTIFUL_SOUP_PARSER = 'html.parser'
 
 parser = argparse.ArgumentParser()
@@ -46,16 +63,23 @@ br.open(soup.body.iframe['src'])
 # Set violation #
 
 br.select_form(nr=0) # Form has no `name`
+
 # Because there is both a non-mobile and mobile version on the page, we need
 # to find the first one and set it.
 if args.violation:
   br.find_control(name='args.VIOLATION_NUMBER_NOL', nr=0).value = args.violation
+  query = [args.violation]
 elif args.plate:
   br.find_control(name='args.PLATE', nr=0).value = args.plate
+  query = [args.plate]
   if args.state:
     br.find_control(name='args.STATE', nr=0).value = [args.state,]
+    query.append(args.state)
   if args.plate_type:
     br.find_control(name='args.TYPE', nr=0).value = [args.plate_type,]
+    query.append(args.plate_type)
+
+query_string = ", ".join(query)
 
 # Remove duplicate form controls, otherwise we get an error from the server.
 form_names_set = set([])
@@ -82,6 +106,8 @@ if error_tags:
 else:
   match = re.search(r'No matches found for your violation search', html)
   if match:
-      print 'No tickets found for violation # ' + args.violation
+      print 'No tickets found for ' + query_string
   else:
-      print 'Found a ticket for violation # ' + args.violation
+    # Parse list of violations found:
+      print 'Found tickets for ' + query_string
+      print 'Got tickets: ' + '\n'.join([str(violation) for violation in get_violations(soup)])
