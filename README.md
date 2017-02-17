@@ -6,7 +6,7 @@ Instead I used the payments end-point (`http://www1.nyc.gov/assets/finance/jump/
 
 ## Libraries
 
-Requires `BeautifulSoup4` to be installed.
+Requires `mechanize` and `BeautifulSoup4` to be installed.
 
 ## Usage
 
