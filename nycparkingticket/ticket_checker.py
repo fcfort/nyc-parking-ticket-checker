@@ -192,6 +192,3 @@ def main():
           violation.plate,
           violation.issue_date,
           violation.amount)
-
-
-main()
