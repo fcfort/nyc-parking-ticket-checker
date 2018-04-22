@@ -55,5 +55,4 @@ setup(
             'ticket_checker=nycparkingticket:main',
         ],
     },
-
 )
