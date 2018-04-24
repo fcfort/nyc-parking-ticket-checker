@@ -64,7 +64,7 @@ class TicketChecker(object):
   def getByViolationNumber(self, violation_number):
     return self._parseViolations(_Query.byViolationNumber(violation_number))
 
-  def getByPlate(self, plate_number, state='NY', plate_type='PAS'):
+  def getByPlate(self, plate_number, state=None, plate_type=None):
     return self._parseViolations(
         _Query.byPlate(state, plate_type, plate_number))
 

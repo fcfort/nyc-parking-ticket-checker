@@ -12,7 +12,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='nyc-parking-ticket-checker',  # Required
-    version='0.0.1',  # Required
+    version='0.0.3',  # Required
     description='A module to query for NYC parking tickets',  # Required
     long_description=long_description,  # Optional
     long_description_content_type='text/markdown',  # Optional (see note above)
@@ -27,15 +27,6 @@ setup(
     ],
     keywords='ticket plates violation-number nyc',  # Optional
 
-    # You can just specify package directories manually here if your project is
-    # simple. Or you can use find_packages().
-    #
-    # Alternatively, if you just want to distribute a single Python file, use
-    # the `py_modules` argument instead as follows, which will expect a file
-    # called `my_module.py` to exist:
-    #
-    #   py_modules=["my_module"],
-    #
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),  # Required
 
     install_requires=[
@@ -43,13 +34,6 @@ setup(
         'mechanize',
     ],
 
-    # To provide executable scripts, use entry points in preference to the
-    # "scripts" keyword. Entry points provide cross-platform support and allow
-    # `pip` to create the appropriate form of executable for the target
-    # platform.
-    #
-    # For example, the following would provide a command called `sample` which
-    # executes the function `main` from this package when invoked:
     entry_points={  # Optional
         'console_scripts': [
             'ticket_checker=nycparkingticket.ticket_checker:main',
