@@ -12,7 +12,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='nyc-parking-ticket-checker',  # Required
-    version='0.0.3',  # Required
+    version='0.0.5',  # Required
     description='A module to query for NYC parking tickets',  # Required
     long_description=long_description,  # Optional
     long_description_content_type='text/markdown',  # Optional (see note above)

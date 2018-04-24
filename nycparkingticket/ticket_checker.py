@@ -1,5 +1,6 @@
 import argparse
 import collections
+import datetime
 import logging
 import re
 import sys
@@ -143,7 +144,8 @@ class TicketChecker(object):
           number=violation_values[0].string,
           plate=violation_values[1].string,
           description=violation_values[2].string,
-          issue_date=violation_values[3].string,
+          issue_date=datetime.datetime.strptime(
+              violation_values[3].string, '%m/%d/%Y').date(),
           # image_url_on_click = violation_tag.find(class_='nav-link').a['onclick']
           amount=violation_values[4].string)
 
