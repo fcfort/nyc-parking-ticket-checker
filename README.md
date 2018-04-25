@@ -95,6 +95,10 @@ $ python ticket_checker.py --plate BADPLATE
 
 twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
+### Prod PyPI
+
+twine upload dist/*
+
 ## License
 
 [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
