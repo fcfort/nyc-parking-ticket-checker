@@ -136,7 +136,7 @@ class TicketChecker(object):
   def get_violations(soup):
     violation_list = []
     violations = soup.find_all(class_='violation-group-detail')
-    print 'got violation count ' + str(len(violations))
+
     for violation_tag in violations:
       violation_values = violation_tag.find_all(
         class_='violation-details-single-value1')
